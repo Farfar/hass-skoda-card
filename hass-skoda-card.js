@@ -1,4 +1,8 @@
-import { LitElement, html } from 'lit-element';
+import {
+  LitElement,
+  html,
+  css
+} from "https://unpkg.com/lit-element@2.0.1/lit-element.js?module";
 
 class SkodaCard extends LitElement {
   static get properties() {
