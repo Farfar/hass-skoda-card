@@ -1,8 +1,8 @@
 class SkodaCard extends HTMLElement {
   set hass(hass) {
     const device = this.config.device;
-    const tracker = 'device_tracker'.concat(device, '_position')
-    const moving = 'binary_sensor'.concat(device, '_vehicle_moving')
+    const tracker = 'device_tracker.'.concat(device, '_position')
+    const moving = 'binary_sensor.'.concat(device, '_vehicle_moving')
     const tracker_state = hass.states[tracker]
     const moving_state = hass.states[moving]
     //const model_image =
@@ -26,7 +26,7 @@ class SkodaCard extends HTMLElement {
   // The user supplied configuration. Throw an exception and Lovelace will
   // render an error card.
   setConfig(config) {
-    if (!config.device) {
+    if (!config.entity) {
       throw new Error('You need to define a device name!');
     }
     this.config = config;
