@@ -17,21 +17,8 @@ class SkodaCard extends LitElement {
     return html`
       <skoda-card>
         <div id="container">
-          ${this.config}
+          <p>${this.config}</p>
           <img id="skoda-model" src="${this.imageurl}" style="display:block">
-          ${this.config.entities.map(entity => {
-          const stateObj = this.hass.states[entity];
-          return stateObj
-            ? html`
-              <div class="state">
-                ${stateObj.attributes.friendly_name}:
-                ${stateObj.state}
-              </div>
-            `
-            : html`
-              <div class="not-found">Entity ${entity} not found.</div>
-            `;
-          })}
         </div>
         </skoda-card>
     `;
