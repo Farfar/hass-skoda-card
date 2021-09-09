@@ -5,7 +5,7 @@ class SkodaCard extends HTMLElement {
     const moving = 'binary_sensor.'.concat(device, '_vehicle_moving')
     const tracker_state = hass.states[tracker]
     const moving_state = hass.states[moving]
-    //const model_image =
+    const image_url = tracker.attributes.entity_picture
 
     if (!this.content) {
       this.innerHTML = `
@@ -19,15 +19,15 @@ class SkodaCard extends HTMLElement {
     this.content.innerHTML = `
       The chosen vehicle ${device}, device tracker sensor is ${tracker} and moving sensor is ${moving}!
       <br><br>
-      <img src="http://via.placeholder.com/350x150">
+      <img src="${image_url}">
     `;
   }
 
   // The user supplied configuration. Throw an exception and Lovelace will
   // render an error card.
   setConfig(config) {
-    if (!config.entity) {
-      throw new Error('You need to define a device name!');
+    if (!config.device) {
+      throw new Error('Please define a device (car name)!');
     }
     this.config = config;
   }
@@ -35,6 +35,7 @@ class SkodaCard extends HTMLElement {
   // The height of your card. Home Assistant uses this to automatically
   // distribute all cards over the available columns.
   getCardSize() {
+    // 150px high
     return 3;
   }
 }
