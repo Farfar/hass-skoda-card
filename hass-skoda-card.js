@@ -1,23 +1,32 @@
+import "https://unpkg.com/wired-card@0.8.1/wired-card.js?module";
+import "https://unpkg.com/wired-toggle@0.8.0/wired-toggle.js?module";
 import {
   LitElement,
   html,
   css
 } from "https://unpkg.com/lit-element@2.0.1/lit-element.js?module";
 
+function loadCSS(url) {
+  const link = document.createElement("link");
+  link.type = "text/css";
+  link.rel = "stylesheet";
+  link.href = url;
+  document.head.appendChild(link);
+}
+
+loadCSS("https://fonts.googleapis.com/css?family=Gloria+Hallelujah");
+
 class SkodaCard extends LitElement {
   static get properties() {
     return {
       hass: { type: Object },
-      config: { type: Object },
-      imageurl: { type: String }
+      config: { type: Object }
     };
   }
 
   render(){
     return html`
-      <skoda-card>
-        <div id="container">
-          <img id="skoda-model" src="${this.imageurl}" style="display:block">
+      <wired-card elevation="2">
           ${this.config.entities.map(ent => {
           const stateObj = this.hass.states[ent];
           return stateObj
@@ -34,8 +43,8 @@ class SkodaCard extends LitElement {
                 <div class="not-found">Entity ${ent} not found.</div>
               `;
         })}
-        </div>
-      </skoda-card>
+        <img id="skoda-model" src="${this.imageurl}" style="display:block">
+      </wired-card>
     `;
   }
 
@@ -54,6 +63,36 @@ class SkodaCard extends LitElement {
   // @TODO: This requires more intelligent logic
   getCardSize() {
     return 3;
+  }
+
+
+  static get styles() {
+    return css`
+      :host {
+        font-family: "Gloria Hallelujah", cursive;
+      }
+      wired-card {
+        background-color: white;
+        padding: 16px;
+        display: block;
+        font-size: 18px;
+      }
+      .state {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px;
+        align-items: center;
+      }
+      .not-found {
+        background-color: yellow;
+        font-family: sans-serif;
+        font-size: 14px;
+        padding: 8px;
+      }
+      wired-toggle {
+        margin-left: 8px;
+      }
+    `;
   }
 }
 
