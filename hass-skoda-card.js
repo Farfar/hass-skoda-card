@@ -27,7 +27,7 @@ class SkodaCard extends LitElement {
     return html`
       <skoda-card>
         <div id="container">
-          <img id="skoda-model" src="${this.hass.states[device_tracker.superb_position].attributes.entity_picture}" style="display:block">
+          <img id="skoda-model" src="${this.hass.states["device_tracker.superb_position"].attributes.entity_picture}" style="display:block">
           ${this.config.entities.map(entity => {
           const stateObj = this.hass.states[entity];
           return stateObj
