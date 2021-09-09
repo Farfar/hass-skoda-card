@@ -9,7 +9,7 @@ class SkodaCard extends HTMLElement {
 
     if (!this.content) {
       this.innerHTML = `
-        <ha-card header="Example-card">
+        <ha-card header="Skoda Connect">
           <div class="card-content"></div>
         </ha-card>
       `;
@@ -17,7 +17,7 @@ class SkodaCard extends HTMLElement {
     }
 
     this.content.innerHTML = `
-      The chosen vehicle ${device} is ${moving_state} and currently ${tracker_state}!
+      The chosen vehicle ${device}, device tracker sensor is ${tracker} and moving sensor is ${moving}!
       <br><br>
       <img src="http://via.placeholder.com/350x150">
     `;
@@ -26,8 +26,8 @@ class SkodaCard extends HTMLElement {
   // The user supplied configuration. Throw an exception and Lovelace will
   // render an error card.
   setConfig(config) {
-    if (!config.entity) {
-      throw new Error('You need to define an entity');
+    if (!config.device) {
+      throw new Error('You need to define a device name!');
     }
     this.config = config;
   }

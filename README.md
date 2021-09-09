@@ -9,7 +9,7 @@ This card creates a pretty (up for discussion) card for your Skoda car status.
 
 | Name | Type | Required | Default | Description
 | ---- | ---- | -------- | ------- | -----------
-| type | string | True | - | Must be "custom:blind-card"
+| type | string | True | - | Must be "custom:skoda-card"
 | title | string | False | - | Title of the card
 
 ### Device
