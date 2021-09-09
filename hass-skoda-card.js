@@ -5,7 +5,7 @@ class SkodaCard extends HTMLElement {
     const moving = 'binary_sensor.'.concat(device, '_vehicle_moving')
     const tracker_state = hass.states[tracker]
     const moving_state = hass.states[moving]
-    const image_url = tracker.attributes.entity_picture
+    const image_url = tracker_state.attributes.entity_picture
 
     if (!this.content) {
       this.innerHTML = `
