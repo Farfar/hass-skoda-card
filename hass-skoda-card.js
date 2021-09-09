@@ -21,7 +21,7 @@ class SkodaCard extends LitElement {
 
   render(){
     return html`
-      <div id="skoda-card">
+      <skoda-card>
         <div id="container">
           <img id="skoda-model" src="${this.imageurl}" style="display:block">
           ${this.config.entities.map(entity => {
@@ -38,7 +38,7 @@ class SkodaCard extends LitElement {
             `;
           })}
         </div>
-      </div>
+        </skoda-card>
     `;
   }
 
