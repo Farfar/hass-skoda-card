@@ -21,14 +21,13 @@ class SkodaCard extends LitElement {
       throw new Error('Please define a list of entities');
     }
     this.config = config;
-    this.imageurl = this.hass.states[device_tracker.superb_position].attributes.entity_picutre
   }
 
   render(){
     return html`
       <skoda-card>
         <div id="container">
-          <img id="skoda-model" src="${this.imageurl}" style="display:block">
+          <img id="skoda-model" src="${this.hass.states[device_tracker.superb_position].attributes.entity_picture}" style="display:block">
           ${this.config.entities.map(entity => {
           const stateObj = this.hass.states[entity];
           return stateObj
