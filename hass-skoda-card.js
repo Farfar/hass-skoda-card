@@ -21,6 +21,8 @@ class SkodaCard extends LitElement {
       throw new Error('Please define a list of entities');
     }
     this.config = config;
+    this.hass = hass
+    this.imageurl = this.hass.states.device_tracker.superb_position.attributes.entity_picutre
   }
 
   render(){
@@ -44,18 +46,6 @@ class SkodaCard extends LitElement {
         </div>
         </skoda-card>
     `;
-  }
-
-  set hass(hass) {
-    this.hass = hass;
-    const name = this.config.device;
-
-    if (this.config.title == null || this.config.title == true) {
-      this.header = `Skoda ${name.charAt(0).toUpperCase() + name.slice(1)}`;
-    }
-
-    const base_entity = this.config.device.toLowerCase();
-    this.imageurl = this.hass.states[`device_tracker.${base_entity}_position`].attributes.entity_picture;
   }
 
   // @TODO: This requires more intelligent logic
