@@ -17,7 +17,7 @@ class SkodaCard extends LitElement {
     return html`
       <skoda-card>
         <div id="container">
-          <p>${this.config}</p>
+          <p>${this.config.entities}</p>
           <img id="skoda-model" src="${this.imageurl}" style="display:block">
         </div>
         </skoda-card>
