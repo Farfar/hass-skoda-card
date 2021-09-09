@@ -21,7 +21,6 @@ class SkodaCard extends LitElement {
       throw new Error('Please define a list of entities');
     }
     this.config = config;
-    this.hass = hass
     this.imageurl = this.hass.states.device_tracker.superb_position.attributes.entity_picutre
   }
 
