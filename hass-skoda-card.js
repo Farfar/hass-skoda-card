@@ -26,7 +26,7 @@ class SkodaCard extends LitElement {
   }
 
   set hass(hass) {
-    this.hass = hass;
+    this._hass = hass;
     let updated = false;
   }
 
@@ -87,7 +87,7 @@ class SkodaCard extends LitElement {
     return html `
       <div class="skoda-footer" style="width: 100%;">
       ${this.config.entities.map(ent => {
-        const stateObj = this.hass.states[ent];
+        const stateObj = this._hass.states[ent];
         return stateObj
           ? html`
               <div class="state">
