@@ -91,7 +91,7 @@ class SkodaCard extends LitElement {
         return stateObj
           ? html`
               <div class="skoda-state">
-                <div class="skoda-state-label">${stateObj.name}</div>
+                ${this.config.headers == true ? html `<div class="skoda-state-label">${stateObj}</div>` : "" }
                 <div class="skoda-state-icon">
                   <ha-icon class="skoda-icon" .icon=${this.getIcon(stateObj)}></ha-icon>
                 </div>
