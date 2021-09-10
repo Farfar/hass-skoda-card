@@ -141,13 +141,19 @@ class SkodaCard extends LitElement {
       .skoda-state {
         height: 100%;
         width: 50px;
-        margin: 10px;
+        margin: 0px 5px;
+        padding-bottom: 10px;
       }
+
       .skoda-state-icon {
-        height: 60%;
+        max-width: 100%;
+        margin: 0px;
+        padding: 0px;
       }
-      .skoda-state-state {
-        height: 40%;
+
+      p.skoda-state-state {
+        margin: 5px 0px;
+        padding: 0px;
       }
 
       .skoda-footer {
@@ -159,6 +165,7 @@ class SkodaCard extends LitElement {
         justify-content: space-evenly;
         width: 100%;
         height: 80px;
+        background-color: rgba(0,0,0,0.7);
       }
     `;
   }
