@@ -86,14 +86,14 @@ class SkodaCard extends LitElement {
 
   renderStates() {
     return html `
-      <div class="skoda-footer" style="width: 100%;">
+      <div class="skoda-footer">
       ${this.config.entities.map(ent => {
         const stateObj = this._hass.states[ent];
         return stateObj
           ? html`
               <div class="skoda-state">
-                <ha-icon .icon=${this.getIcon(stateObj)}></ha-icon>
-                <p>${stateObj.state}</p>
+                <div class="skoda-state-icon"><ha-icon .icon=${this.getIcon(stateObj)}></ha-icon></div>
+                <div class="skoda-state-state"><p>${stateObj.state}</p></div>
               </div>
             `
           : html`
@@ -124,8 +124,8 @@ class SkodaCard extends LitElement {
       .skoda-model {
         display: block;
         max-width: 100%;
-        padding-top: 34px;
-        padding-bottom: 50px;
+        padding-top: 30px;
+        padding-bottom: 20px;
       }
 
       .skoda-header {
@@ -138,9 +138,19 @@ class SkodaCard extends LitElement {
       }
 
       .skoda-state {
-        height: 50px;
+        height: 100%;
         width: 50px;
         margin: 10px;
+      }
+      .skoda-state-icon {
+        height: 60%;
+      }
+      .skoda-state-state {
+        height: 40%;
+      }
+
+      ha-icon {
+        --mdc-icon-size: 100%;
       }
 
       .skoda-footer {
@@ -149,8 +159,9 @@ class SkodaCard extends LitElement {
         display: flex;
         flex-wrap: wrap;
         text-align: center;
+        justify-content: space-evenly;
         width: 100%;
-        height: 100px;
+        height: 80px;
       }
     `;
   }
