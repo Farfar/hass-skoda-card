@@ -88,7 +88,7 @@ class SkodaCard extends LitElement {
       <div class="skoda-footer">
       ${this.config.entities.map(ent => {
         const stateObj = this._hass.states[ent];
-        console.log(stateObj);
+        Object.keys(stateObj).forEach(prop => console.log(prop)):
         return stateObj
           ? html`
               <div class="skoda-state">
