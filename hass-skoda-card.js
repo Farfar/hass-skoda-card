@@ -91,8 +91,9 @@ class SkodaCard extends LitElement {
         return stateObj
           ? html`
               <div class="skoda-state">
+                <div class="skoda-state-label">${stateObj.name}</div>
                 <div class="skoda-state-icon">
-                  <ha-icon .icon=${this.getIcon(stateObj)}></ha-icon>
+                  <ha-icon class="skoda-icon" .icon=${this.getIcon(stateObj)}></ha-icon>
                 </div>
                 <div class="skoda-state-state">${stateObj.state}</div>
               </div>
@@ -149,6 +150,10 @@ class SkodaCard extends LitElement {
         max-width: 100%;
         margin: 0px;
         padding: 0px;
+      }
+
+      ha-icon.skoda-icon {
+        --mdc-icon-size: 100%;
       }
 
       p.skoda-state-state {
