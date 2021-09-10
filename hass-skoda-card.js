@@ -58,7 +58,7 @@ class SkodaCard extends LitElement {
 
   renderContainer() {
     return html `
-      <div id="skoda-card-container">
+      <div class="skoda-container">
         ${this.renderBackground()} ${this.renderHeader()} ${this.renderStates()}
       </div>
     `
@@ -72,14 +72,15 @@ class SkodaCard extends LitElement {
           <div class="name">
             ${this.header}
           </div>
-        </div>`
+        </div>
+        <hr class="skoda-divider">`
       : "" }
     `;
   }
 
   renderBackground() {
     return html `
-      <img id="skoda-model" style="display:block;max-width: 100%;" src="${this.imageurl}">
+      <img class="skoda-model" src="${this.imageurl}">
     `
   }
 
@@ -90,12 +91,9 @@ class SkodaCard extends LitElement {
         const stateObj = this._hass.states[ent];
         return stateObj
           ? html`
-              <div class="state">
-                ${stateObj.attributes.friendly_name}
-                <wired-toggle
-                  .checked="${stateObj.state === "on"}"
-                  @change="${ev => this._toggle(stateObj)}"
-                ></wired-toggle>
+              <div class="skoda-state">
+                <ha-icon .icon=${this.getIcon(stateObj)}></ha-icon>
+                <p>${stateObj.state}</p>
               </div>
             `
           : html`
@@ -111,14 +109,48 @@ class SkodaCard extends LitElement {
     return 3;
   }
 
+  getIcon(entity) {
+    return (
+      this.config.icon || entity.attributes.icon
+    );
+  }
 
   static get styles() {
     return css`
-      #root {
+      .skoda-container {
         position: relative;
       }
-      div {
+
+      .skoda-model {
         display: block;
+        max-width: 100%;
+        padding-top: 34px;
+        padding-bottom: 50px;
+      }
+
+      .skoda-header {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        padding-top: 10px;
+        text-align: center;
+        font-size: 24px;
+      }
+
+      .skoda-state {
+        height: 50px;
+        width: 50px;
+        margin: 10px;
+      }
+
+      .skoda-footer {
+        position: absolute;
+        bottom: 0px;
+        display: flex;
+        flex-wrap: wrap;
+        text-align: center;
+        width: 100%;
+        height: 100px;
       }
     `;
   }
