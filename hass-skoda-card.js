@@ -88,10 +88,10 @@ class SkodaCard extends LitElement {
       <div class="skoda-footer">
       ${this.config.entities.map(ent => {
         const stateObj = this._hass.states[ent];
+        Object.keys(stateObj).forEach((prop)=> console.log(prop));
         return stateObj
           ? html`
               <div class="skoda-state">
-                Object.keys(stateObj).forEach((prop)=> console.log(prop));
                 //${this.config.headers == true ? html `<div class="skoda-state-label">${stateObj}</div>` : "" }
                 <div class="skoda-state-icon">
                   <ha-icon class="skoda-icon" .icon=${this.getIcon(stateObj)}></ha-icon>
