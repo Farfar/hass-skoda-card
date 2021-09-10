@@ -59,7 +59,7 @@ class SkodaCard extends LitElement {
   renderContainer() {
     return html `
       <div id="skoda-card-container">
-        ${this.renderBackground} ${this.renderHeader} ${this.renderStates}
+        ${this.renderBackground()} ${this.renderHeader()} ${this.renderStates()}
       </div>
     `
   }
