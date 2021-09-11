@@ -100,7 +100,7 @@ class SkodaCard extends LitElement {
         return stateObj
           ? html`
               <div class="skoda-state">
-                //${this.config.headers == true ? html `<div class="skoda-state-label">${stateObj}</div>` : "" }
+                ${this.config.headers == true ? html `<div class="skoda-state-label">${stateObj.attributes.friendly_name}</div>` : "" }
                 <div class="skoda-state-icon">
                   <ha-icon class="skoda-icon" .icon=${this.getIcon(stateObj)}></ha-icon>
                 </div>
@@ -152,17 +152,12 @@ class SkodaCard extends LitElement {
         height: 100%;
         width: 50px;
         margin: 0px 5px;
-        padding-bottom: 10px;
       }
 
       .skoda-state-icon {
         max-width: 100%;
         margin: 0px;
-        padding: 0px;
-      }
-
-      ha-icon.skoda-icon {
-        --mdc-icon-size: 100%;
+        padding: 5px 0px 0px;
       }
 
       p.skoda-state-state {
@@ -178,7 +173,7 @@ class SkodaCard extends LitElement {
         text-align: center;
         justify-content: space-evenly;
         width: 100%;
-        height: 80px;
+        height: 50px;
         background-color: rgba(0,0,0,0.7);
       }
     `;
