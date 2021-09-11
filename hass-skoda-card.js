@@ -89,7 +89,7 @@ class SkodaCard extends LitElement {
   //   attributes
   //    model
   //    unit_of_measurement
-  //    firendly_name
+  //    friendly_name
   //    icon
   //    assumed_state
   //   last_changed
@@ -102,21 +102,24 @@ class SkodaCard extends LitElement {
         const stateObj = this._hass.states[ent];
         Object.keys(stateObj.attributes).forEach(prop => console.log(prop));
         return stateObj
-          ? html`
-              <div class="skoda-state">
-                ${this.config.headers == true ? html `<div class="skoda-state-label">${stateObj.attributes.friendly_name}</div>` : "" }
-                <div class="skoda-state-icon">
-                  <ha-icon class="skoda-icon" .icon=${this.getIcon(stateObj)}></ha-icon>
-                </div>
-                <div class="skoda-state-state">${stateObj.state}</div>
-              </div>
-            `
+          ? ${this.renderState(stateObj)}
           : html`
               <div class="not-found">Entity ${ent} not found.</div>
             `;
       })}
       </div>
     `
+  }
+
+  renderState(entity) {
+    return html`
+      <div class="skoda-state">
+        <div class="skoda-state-icon">
+          <ha-icon class="skoda-icon" .icon=${this.getIcon(entity)}></ha-icon>
+        </div>
+        ${this.config.states == true ? html `<div class="skoda-state-text">${entity.attributes.friendly_name}</div>` : "" }
+      </div>
+    `;
   }
 
   // @TODO: This requires more intelligent logic
@@ -161,10 +164,10 @@ class SkodaCard extends LitElement {
       .skoda-state-icon {
         max-width: 100%;
         margin: 0px;
-        padding: 5px 0px 0px;
+        padding: 5px 0px;
       }
 
-      p.skoda-state-state {
+      p.skoda-state-text {
         margin: 5px 0px;
         padding: 0px;
       }
