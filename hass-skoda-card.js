@@ -87,6 +87,11 @@ class SkodaCard extends LitElement {
   //   entity-id
   //   state
   //   attributes
+  //    model
+  //    unit_of_measurement
+  //    firendly_name
+  //    icon
+  //    assumed_state
   //   last_changed
   //   last_updated
   //   context
@@ -95,7 +100,6 @@ class SkodaCard extends LitElement {
       <div class="skoda-footer">
       ${this.config.entities.map(ent => {
         const stateObj = this._hass.states[ent];
-        Object.keys(stateObj.context).forEach(prop => console.log(prop));
         Object.keys(stateObj.attributes).forEach(prop => console.log(prop));
         return stateObj
           ? html`
