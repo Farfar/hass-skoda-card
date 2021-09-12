@@ -115,7 +115,7 @@ class SkodaCard extends LitElement {
       <div class="skoda-state">
         <div class="skoda-state-icon">
           <ha-icon class="skoda-icon" .icon=${this.getIcon(entity)}></ha-icon>
-          <span class="tooltip">${this.entity.attributes.friendly_name}</span>
+          <span class="tooltip">${entity.attributes.friendly_name}</span>
         </div>
         ${this.config.states == true ? html `<div class="skoda-state-text">${entity.state}</div>` : "" }
       </div>
@@ -182,7 +182,6 @@ class SkodaCard extends LitElement {
         position: absolute;
         z-index: 1;
       }
-      /* Show the tooltip text when you mouse over the tooltip container */
       .skoda-state-icon:hover .tooltiptext {
         visibility: visible;
       }
