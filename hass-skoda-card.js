@@ -115,8 +115,9 @@ class SkodaCard extends LitElement {
       <div class="skoda-state">
         <div class="skoda-state-icon">
           <ha-icon class="skoda-icon" .icon=${this.getIcon(entity)}></ha-icon>
+          <span class="tooltip">${this.entity.attributes.friendly_name}</span>
         </div>
-        ${this.config.states == true ? html `<div class="skoda-state-text">${entity.attributes.friendly_name}</div>` : "" }
+        ${this.config.states == true ? html `<div class="skoda-state-text">${entity.state}</div>` : "" }
       </div>
     `;
   }
@@ -161,9 +162,29 @@ class SkodaCard extends LitElement {
       }
 
       .skoda-state-icon {
+        position: relative;
+        display: inline-block;
+        border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
         max-width: 100%;
         margin: 0px;
         padding: 5px 0px;
+      }
+      .skoda-state-icon .tooltiptext {
+        visibility: hidden;
+        width: 120px;
+        background-color: black;
+        color: #fff;
+        text-align: center;
+        padding: 5px 0;
+        border-radius: 6px;
+
+        /* Position the tooltip text - see examples below! */
+        position: absolute;
+        z-index: 1;
+      }
+      /* Show the tooltip text when you mouse over the tooltip container */
+      .skoda-state-icon:hover .tooltiptext {
+        visibility: visible;
       }
 
       p.skoda-state-text {
@@ -180,7 +201,8 @@ class SkodaCard extends LitElement {
         justify-content: space-evenly;
         width: 100%;
         height: 50px;
-        background-color: rgba(var( --ha-card-background, var(--card-background-color, white) ),0.7);
+        background-color: var(--primary-background-color);
+        opacity: 70%;
       }
     `;
   }
