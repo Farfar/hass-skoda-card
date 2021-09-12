@@ -117,7 +117,13 @@ class SkodaCard extends LitElement {
           <ha-icon class="skoda-icon" .icon=${this.getIcon(entity)}></ha-icon>
           <span class="tooltip">${entity.attributes.friendly_name}</span>
         </div>
-        ${this.config.states == true ? html `<div class="skoda-state-text">${entity.state}</div>` : "" }
+        ${this.config.states == true
+          ? html `
+            <div class="skoda-state-text">
+              ${entity.state} ${entity.attributes.unit_of_measurement || ""}
+            </div>`
+          : ""
+        }
       </div>
     `;
   }
@@ -164,15 +170,14 @@ class SkodaCard extends LitElement {
       .skoda-state-icon {
         position: relative;
         display: inline-block;
-        border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
         max-width: 100%;
         margin: 0px;
         padding: 5px 0px;
       }
-      .skoda-state-icon .tooltiptext {
+      .skoda-state-icon .tooltip {
         visibility: hidden;
         width: 120px;
-        background-color: black;
+        background-color: var(--ha-picture-card-background-color, rgba(0, 0, 0, 0.9));
         color: #fff;
         text-align: center;
         padding: 5px 0;
@@ -182,7 +187,7 @@ class SkodaCard extends LitElement {
         position: absolute;
         z-index: 1;
       }
-      .skoda-state-icon:hover .tooltiptext {
+      .skoda-state-icon:hover .tooltip {
         visibility: visible;
       }
 
@@ -201,7 +206,7 @@ class SkodaCard extends LitElement {
         width: 100%;
         height: 50px;
         background-color: var(--primary-background-color);
-        opacity: 70%;
+        opacity: 60%;
       }
     `;
   }
