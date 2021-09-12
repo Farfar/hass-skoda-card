@@ -114,7 +114,13 @@ class SkodaCard extends LitElement {
     return html`
       <div class="skoda-state">
         <div class="skoda-state-icon">
-          <ha-icon class="skoda-icon" .icon=${this.getIcon(entity)} data-state=${entity.state == "on" ? html `"on"` : html `"off"`}></ha-icon>
+          <ha-icon class="skoda-icon"
+            .icon=${this.getIcon(entity)}
+            data-state=${entity.state === "on"
+              ? html `"on"`
+              : html `"off"`
+            }>
+          </ha-icon>
           <span class="tooltip">${entity.attributes.friendly_name}</span>
         </div>
         ${this.config.states == true
