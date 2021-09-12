@@ -100,9 +100,8 @@ class SkodaCard extends LitElement {
       <div class="skoda-footer">
       ${this.config.entities.map(ent => {
         const stateObj = this._hass.states[ent];
-        Object.keys(stateObj.attributes).forEach(prop => console.log(prop));
         return stateObj
-          ? ${this.renderState(stateObj)}
+          ? this.renderState(stateObj);
           : html`
               <div class="not-found">Entity ${ent} not found.</div>
             `;
@@ -181,7 +180,7 @@ class SkodaCard extends LitElement {
         justify-content: space-evenly;
         width: 100%;
         height: 50px;
-        background-color: rgba(0,0,0,0.7);
+        background-color: rgba(var( --ha-card-background, var(--card-background-color, white) ),0.7);
       }
     `;
   }
