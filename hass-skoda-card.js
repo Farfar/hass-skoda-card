@@ -45,7 +45,7 @@ class SkodaCard extends LitElement {
       throw new Error('Please define a list of entities');
     }
     this.config = config;
-    this.imageurl = 'https://ip-modcwp.azureedge.net//modcwp3v5b20200903/0F0F-2ovtqWUlebk-6kVu2o9bdY-17NgmyXQTv.qVlH-yIC8G.6aPQ2EXMUzv-s1BZqeSWgmRyK69.kcuHUNDxO-DiSFcTLXOgdPZlAGIn-1080570studiovbeauty_connectview101281.png?v=637169955100000000';
+    this.imageurl = 'https://ip-modcwp.azureedge.net//modcwp3v5b20200903/0F0F-2ovtqWUlebk-6kVu2o9bdY-17NgmyXQTv.qVlH-yIC8G.6aPQ2EXMUzv-s1BZqeSWgmRyK69.kcuHUNDxO-DiSFcTLXOgdPZlAGIn-1080570studiovbeauty_connectview101281.png';
   }
 
   render(){
@@ -101,7 +101,7 @@ class SkodaCard extends LitElement {
       ${this.config.entities.map(ent => {
         const stateObj = this._hass.states[ent];
         return stateObj
-          ? this.renderState(stateObj);
+          ? this.renderState(stateObj)
           : html`
               <div class="not-found">Entity ${ent} not found.</div>
             `;
