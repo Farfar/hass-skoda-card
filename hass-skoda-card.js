@@ -132,12 +132,14 @@ class SkodaCard extends LitElement {
     `;
   }
 
+
+  //.overrideIcon="${config.icon === true ? entity.attributes.icon || null : config.icon}"
+  //.stateColor="${config.state_color}"
   renderIcon(entity) {
     return html`<state-badge
       class="icon-small"
       .stateObj="${entity}"
-      .overrideIcon="${config.icon === true ? entity.attributes.icon || null : config.icon}"
-      .stateColor="${config.state_color}"
+      .stateColor="true"
     ></state-badge>`;
   }
 
