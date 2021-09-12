@@ -101,7 +101,7 @@ class SkodaCard extends LitElement {
       ${this.config.entities.map(ent => {
         const stateObj = this._hass.states[ent];
         return stateObj
-          ? this.renderState(stateObj)
+          ? this.renderEntity(stateObj)
           : html`
               <div class="not-found">Entity ${ent} not found.</div>
             `;
@@ -110,7 +110,7 @@ class SkodaCard extends LitElement {
     `
   }
 
-  renderState(entity) {
+  renderEntity(entity) {
     var iconstate = "off";
     if (entity.state === "on") {
       iconstate = "on";
@@ -118,10 +118,7 @@ class SkodaCard extends LitElement {
     return html`
       <div class="skoda-state">
         <div class="skoda-state-icon">
-          <ha-icon class="skoda-icon"
-            .icon=${this.getIcon(entity)}
-            data-state=${iconstate}
-          ></ha-icon>
+          ${this.renderIcon(entity)}
           <span class="tooltip">${entity.attributes.friendly_name}</span>
         </div>
         ${this.config.states == true
@@ -133,6 +130,15 @@ class SkodaCard extends LitElement {
         }
       </div>
     `;
+  }
+
+  renderIcon(entity) {
+    return html`<state-badge
+      class="icon-small"
+      .stateObj="${entity}"
+      .overrideIcon="${config.icon === true ? entity.attributes.icon || null : config.icon}"
+      .stateColor="${config.state_color}"
+    ></state-badge>`;
   }
 
   // @TODO: This requires more intelligent logic
