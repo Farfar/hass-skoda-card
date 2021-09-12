@@ -114,7 +114,7 @@ class SkodaCard extends LitElement {
     return html`
       <div class="skoda-state">
         <div class="skoda-state-icon">
-          <ha-icon class="skoda-icon" .icon=${this.getIcon(entity)}></ha-icon>
+          <ha-icon class="skoda-icon" .icon=${this.getIcon(entity)} data-state=${entity.state == "on" ? html `"on"` : html `"off"`}></ha-icon>
           <span class="tooltip">${entity.attributes.friendly_name}</span>
         </div>
         ${this.config.states == true
@@ -170,9 +170,10 @@ class SkodaCard extends LitElement {
       .skoda-state-icon {
         position: relative;
         display: inline-block;
+        color: var(--paper-item-icon-color, #44739e);
         max-width: 100%;
         margin: 0px;
-        padding: 5px 0px;
+        padding: 3px 0px 2px;
       }
       .skoda-state-icon .tooltip {
         visibility: hidden;
